@@ -1,19 +1,22 @@
 package frc.robot;
 //Pathplanner Imports\\
 import com.pathplanner.lib.auto.AutoBuilder;
-
+//Math Imports\\
 import edu.wpi.first.math.MathUtil;
+//SmartDashboard Imports\\
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Constants.DriveConstants;
-import frc.robot.Constants.OIConstants;
-import frc.robot.subsystems.DriveSubsystem;
 //Commands and Controllers\\
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController; 
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+//Constants Imports\\
+import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.OIConstants;
+//Subsystems
+import frc.robot.subsystems.DriveSubsystem;
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -45,7 +48,7 @@ public class RobotContainer {
         -MathUtil.applyDeadband(m_driverController.getRawAxis(4), OIConstants.kDriveDeadband), 
         true),
       m_robotDrive));
-
+    // -------------------------------- PathPlanner Code -------------------------------- \\
     // For convenience a programmer could change this when going to competition.
       boolean isCompetition = false;
     // Build an auto chooser. This will use Commands.none() as the default option.
@@ -68,11 +71,10 @@ public class RobotContainer {
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // The chosen command in autoChooser is returned
+    // The chosen auto in autoChooser is returned
     return autoChooser.getSelected();
   }
 }
