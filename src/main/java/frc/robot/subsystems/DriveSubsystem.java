@@ -1,7 +1,3 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot.subsystems;
 // CTRE Imports
 import com.ctre.phoenix6.hardware.Pigeon2;
@@ -38,7 +34,6 @@ import frc.robot.Constants;
 import frc.robot.pathConfig;
 import frc.robot.Constants.DriveConstants;
 
-
 public class DriveSubsystem extends SubsystemBase {
   // Create MAXSwerveModules
   private final MAXSwerveModule m_frontLeft = new MAXSwerveModule(
@@ -63,8 +58,8 @@ public class DriveSubsystem extends SubsystemBase {
 
   // The gyro sensor
   private final Pigeon2 m_Pigeon2 = new Pigeon2(12);
-
-  private final Field2d m_field = new Field2d(); // 2d Field in SmartDashboard
+  // 2d Field in SmartDashboard
+  private final Field2d m_field = new Field2d(); 
 
   // Odometry class for tracking robot pose -- Odometry means position
   SwerveDriveOdometry m_odometry = new SwerveDriveOdometry(
@@ -105,9 +100,8 @@ public class DriveSubsystem extends SubsystemBase {
 
     // Change the camera pose relative to robot center (x forward, y left, z up, degrees)
     
-    
+    // -------------- PathPlanner Code -------------- \\
     // Configure AutoBuilder last
-    // Autonous Code
     AutoBuilder.configure(
       this::getPose, // Robot pose supplier
       this::resetPose, // Method to reset odometry (will be called if your auto has a starting pose)
@@ -232,10 +226,8 @@ public class DriveSubsystem extends SubsystemBase {
     setModuleStates(targetStates);
   }
 
-
   /**
    * Method to drive the robot using joystick info.
-   *
    * @param xSpeed        Speed of the robot in the x direction (forward).
    * @param ySpeed        Speed of the robot in the y direction (sideways).
    * @param rot           Angular rate of the robot.
@@ -265,7 +257,6 @@ public class DriveSubsystem extends SubsystemBase {
       ySpeedDelivered = ySpeed * DriveConstants.kMaxSpeedMetersPerSecond;
       rotDelivered = rot * DriveConstants.kMaxAngularSpeed;
     }*/
-
 
     var swerveModuleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(
         fieldRelative

@@ -1,10 +1,4 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot;
-// Pathplanner Imports
-import com.pathplanner.lib.config.RobotConfig;
 // Math Imports 
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
@@ -19,12 +13,10 @@ public final class Constants {
   public static final Mode currentMode = RobotBase.isReal() ? Mode.REAL : simMode;
 
   public static enum Mode {
-    /** Running on a real robot. */
+    /** Running on a real robot. */ 
     REAL,
-
     /** Running a physics simulator. */
     SIM,
-
     /** Replaying from a log file. */
     REPLAY
   }
@@ -84,7 +76,7 @@ public final class Constants {
 
     public static int modeValue = 0;
 
-    // OTHER SPARK MAX CAN IDs
+    // OTHER SPARK MAX CAN IDs (These will likely be changed each year)
     public static final int elevatorId = 23;
     public static final int climberId = 24;
     public static final int funnelId = 22;
