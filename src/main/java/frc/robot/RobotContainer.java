@@ -1,6 +1,10 @@
 package frc.robot;
+//Pathplanner Imports\\
+import com.pathplanner.lib.auto.AutoBuilder;
 
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.DriveSubsystem;
@@ -17,6 +21,8 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
+  //Intialize the Autochooser for selecting autos in SmartDashboard\\
+  private final SendableChooser<Command> autoChooser;
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem m_robotDrive;
 
@@ -39,6 +45,20 @@ public class RobotContainer {
         -MathUtil.applyDeadband(m_driverController.getRawAxis(4), OIConstants.kDriveDeadband), 
         true),
       m_robotDrive));
+
+    // For convenience a programmer could change this when going to competition.
+      boolean isCompetition = false;
+    // Build an auto chooser. This will use Commands.none() as the default option.
+        // As an example, this will only show autos that start with "comp" while at
+        // competition as defined by the programmer
+        autoChooser = AutoBuilder.buildAutoChooserWithOptionsModifier(
+            (stream) -> isCompetition
+            ? stream.filter(auto -> auto.getName().startsWith("comp"))
+            : stream
+        );
+
+        //Put the Auto Chooser on SmartDashboard so we can select autos.
+        SmartDashboard.putData("Auto Chooser", autoChooser);
   }
   // Sets up controller bindings
   private void configureBindings() {
@@ -51,8 +71,8 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  /*public Command getAutonomousCommand() {
-    // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
-  }*/
+  public Command getAutonomousCommand() {
+    // The chosen command in autoChooser is returned
+    return autoChooser.getSelected();
+  }
 }

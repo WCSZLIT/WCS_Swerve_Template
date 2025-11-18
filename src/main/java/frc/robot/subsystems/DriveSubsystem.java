@@ -10,9 +10,10 @@ import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 import edu.wpi.first.hal.FRCNetComm.tInstances;
 import edu.wpi.first.hal.FRCNetComm.tResourceType;
 import edu.wpi.first.hal.HAL;
-// Math Import
-import edu.wpi.first.math.VecBuilder;
+//Limelight Imports
+import edu.wpi.first.math.VecBuilder; 
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
+// Math Imports
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -86,6 +87,9 @@ public class DriveSubsystem extends SubsystemBase {
   public DriveSubsystem() {
     // Usage reporting for MAXSwerve template
     HAL.report(tResourceType.kResourceType_RobotDrive, tInstances.kRobotDriveSwerve_MaxSwerve);
+
+    // Places the field in SmartDashboard
+    SmartDashboard.putData("Field", m_field);
     // Calls zero heading
     zeroHeading();
     // Set up robot's kinematics
@@ -95,10 +99,7 @@ public class DriveSubsystem extends SubsystemBase {
             new Translation2d(Units.inchesToMeters(-12.5), Units.inchesToMeters(12.5)), // Back Left
             new Translation2d(Units.inchesToMeters(-12.5), Units.inchesToMeters(-12.5))); // Back Right
 
-    // Places the field in SmartDashboard
-    SmartDashboard.putData("Field", m_field);
-
-    // Change the camera pose relative to robot center (x forward, y left, z up, degrees)
+    // Change the camera pose relative to robot center (x forward, y left, z up, degrees) <-- Not sure this is in the right place.
     
     // -------------- PathPlanner Code -------------- \\
     // Configure AutoBuilder last
@@ -141,7 +142,7 @@ public class DriveSubsystem extends SubsystemBase {
             m_rearRight.getPosition()
         });
     */
-/* 
+/* Limelight Code
     if (DriverStation.isAutonomous()){
       LimelightHelpers.PoseEstimate limelightMeasurement = LimelightHelpers.getBotPoseEstimate_wpiBlue("limelight");
       if (limelightMeasurement.tagCount >= 2) {  // Only trust measurement if we see multiple tags
