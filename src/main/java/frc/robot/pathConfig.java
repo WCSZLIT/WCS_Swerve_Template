@@ -1,24 +1,23 @@
 package frc.robot;
-
+//Pathplanner Imports\\
+import com.pathplanner.lib.config.ModuleConfig;
+import com.pathplanner.lib.config.RobotConfig;
+//Math Imports\\
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.system.plant.DCMotor;
+//IO Imports\\
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-
+//Simple Imports\\
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import com.pathplanner.lib.config.ModuleConfig;
-import com.pathplanner.lib.config.RobotConfig;
-
-import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.system.plant.DCMotor;
-
 public class pathConfig {
     /**
    * Load the robot config from the shared settings file created by the GUI
-   *
    * @return RobotConfig matching the robot settings in the GUI
    * @throws IOException if an I/O error occurs
    * @throws ParseException if a JSON parsing error occurs
