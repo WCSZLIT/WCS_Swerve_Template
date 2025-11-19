@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 //Constants Imports\\
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.ExampleCommand;
 //Subsystems
 import frc.robot.subsystems.DriveSubsystem;
 /**
@@ -23,12 +24,14 @@ import frc.robot.subsystems.DriveSubsystem;
  * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and trigger mappings) should be declared here.
  */
+import frc.robot.subsystems.ExampleSubsystem;
 public class RobotContainer {
   //Intialize the Autochooser for selecting autos in SmartDashboard\\
   private final SendableChooser<Command> autoChooser;
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem m_robotDrive;
-
+  private final ExampleSubsystem exampleSubsystem;
+  
   // Initializes the controller (Xbox)
   private final CommandXboxController m_driverController =
       new CommandXboxController(OIConstants.kDriverControllerPort);
@@ -37,6 +40,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Initializes the subsystems
     m_robotDrive = new DriveSubsystem();
+    exampleSubsystem = new ExampleSubsystem();
     // Gets controller binding
     configureBindings();
     // Sets joystick to drive
@@ -66,7 +70,8 @@ public class RobotContainer {
   // Sets up controller bindings
   private void configureBindings() {
     // Initiallizyng Buttons
-    //new JoystickButton(m_driverController, 0).whileTrue(new CMD(subsystem, value))
+    //m_driverController.a().whileTrue(new ExampleCommand(exampleSubsystem, 0.5));
+    //m_driverController.leftTrigger(0.5).whileTrue(new ExampleCommand(exampleSubsystem, 0.3));
   }
 
   /**
